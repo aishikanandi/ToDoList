@@ -9,21 +9,24 @@
 </head>
 <body>
     <div class="box" id="heading">
-        <h1>Date: <%=kindofday%></h1>
+        <h1><%=listtitle%></h1>
     </div>
     
     <div class="box" >
-        <% for(var i =0;i<newListItem.length;i++){ %>
+        <% newListItem.forEach(function(i){ %>
+            <form action="/delete" method="post">
             <div class="item">
-                <input type="checkbox">
-                <p><%=newListItem[i]%></p>
-
+                
+                <input type="checkbox" name="check" value= <%=i._id%> onChange="this.form.submit()">
+                <p><%=i.name%></p>
+                <input type="hidden" name="a" value=<%=listtitle%> >
+                </form> 
             </div>
             
-        <% } %>
+        <% }) %>
     <form class="item" action="/" method="post">
         <input type="text" name="newItem" placeholder="New item" autocomplete="off">
-        <button type="submit" name="button">+</button>
+        <button type="submit" name="button" value="<%=listtitle%>">+</button>
     </form>
     </div>
     
